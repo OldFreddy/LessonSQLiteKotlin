@@ -1,5 +1,6 @@
 package com.oldfredddy.lessonsqlitekotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,23 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onPostResume() {
         super.onPostResume()
         myDbManager.openDb()
-        val dataList = myDbManager.readDbData()
-
-        for (item in dataList) {
-            tvTest.append(item + "\n")
-        }
 
     }
 
-    fun onClickSave(view: View) {
-        tvTest.text = ""
-        myDbManager.insertToDb(edTitle.text.toString(), edContent.text.toString())
-        val dataList = myDbManager.readDbData()
-
-        for (item in dataList) {
-            tvTest.append(item + "\n")
-        }
-
+    fun onClickNew(view: View) {
+        val i = Intent(this, EditActivity::class.java)
+        startActivity(i)
 
     }
 
